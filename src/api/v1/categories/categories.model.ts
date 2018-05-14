@@ -25,8 +25,8 @@ export const CategorySchemaName = 'Category';
 export const CategorySchema = new mongoose.Schema(
   {
     shopId: { type: String, required: true },
-    name: { type: String, required: true },
-    slug: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
+    slug: { type: String, required: true, unique: true },
     parentId: { type: String, required: false },
     description: { type: String, required: false },
     enabled: { type: Boolean, required: false, default: true },

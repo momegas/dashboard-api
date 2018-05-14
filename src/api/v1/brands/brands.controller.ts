@@ -1,15 +1,6 @@
 import Config from '../../../config';
 import { BrandDto } from './brands.model';
-import {
-  Get,
-  Controller,
-  Inject,
-  Post,
-  Body,
-  Param,
-  Delete,
-  Put,
-} from '@nestjs/common';
+import { Get, Controller, Inject, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { BrandsService } from './brands.service';
 
@@ -28,7 +19,7 @@ export class BrandsController {
   }
 
   @Get(':id')
-  async find(@Param() params) {
+  async findById(@Param() params) {
     return await this.brandsService.findById(params.id);
   }
 

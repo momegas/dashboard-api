@@ -1,13 +1,4 @@
-import {
-  Get,
-  Controller,
-  Inject,
-  Post,
-  Body,
-  Param,
-  Delete,
-  Put,
-} from '@nestjs/common';
+import { Get, Controller, Inject, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { CategoryDto } from './categories.model';
 import { CategoriesService } from './categories.service';
@@ -22,13 +13,13 @@ export class CategoriesController {
     return await this.categoriesService.create(categoryDto);
   }
 
-  @Get(':shopId')
-  async findAllBrandsOfShop(@Param() params) {
-    return await this.categoriesService.findAllOfShop(params.shopId);
+  @Get()
+  async findAll() {
+    return await this.categoriesService.findAll();
   }
 
   @Get(':id')
-  async find(@Param() params) {
+  async findById(@Param() params) {
     return await this.categoriesService.findById(params.id);
   }
 

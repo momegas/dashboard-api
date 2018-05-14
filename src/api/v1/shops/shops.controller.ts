@@ -1,15 +1,6 @@
 import { ShopsService } from './shops.service';
 import Config from '../../../config';
-import {
-  Get,
-  Controller,
-  Inject,
-  Post,
-  Body,
-  Param,
-  Delete,
-  Put,
-} from '@nestjs/common';
+import { Get, Controller, Inject, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ShopDto } from './shops.model';
 
@@ -28,7 +19,7 @@ export class ShopsController {
   }
 
   @Get(':id')
-  async find(@Param() params) {
+  async findById(@Param() params) {
     return await this.shopsService.findById(params.id);
   }
 
@@ -40,5 +31,20 @@ export class ShopsController {
   @Put(':id')
   async update(@Param() params, @Body() shopDto: ShopDto) {
     return await this.shopsService.update(params.id, shopDto);
+  }
+
+  @Get(`:id/${Config.apiV1.brands}`)
+  async findShopBrands(@Param() params) {
+    return await this.shopsService.findShopBrands(params.id);
+  }
+
+  @Get(`:id/${Config.apiV1.categories}`)
+  async findShopCategories(@Param() params) {
+    return await this.shopsService.findShopCategories(params.id);
+  }
+
+  @Get(`:id/${Config.apiV1.products}`)
+  async findShopProducts(@Param() params) {
+    return await this.shopsService.findShopCategories(params.id);
   }
 }

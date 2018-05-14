@@ -1,8 +1,7 @@
 import * as mongoose from 'mongoose';
 
 // Used for plain objects typing
-export class BrandDto {
-  readonly shopId: string;
+export class ShopDto {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
@@ -10,20 +9,18 @@ export class BrandDto {
 }
 
 // Used for instantiated mongoose documents
-export interface Brand extends mongoose.Document {
-  readonly shopId: string;
+export interface Shop extends mongoose.Document {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
   readonly enabled: boolean;
 }
 
-export const BrandSchemaName = 'Brand';
+export const ShopSchemaName = 'Shop';
 
-export const BrandSchema = new mongoose.Schema(
+export const ShopSchema = new mongoose.Schema(
   {
-    shopId: { type: String, required: true },
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     slug: { type: String, required: true },
     description: { type: String, required: false },
     enabled: { type: Boolean, required: false, default: true },
@@ -34,7 +31,7 @@ export const BrandSchema = new mongoose.Schema(
 );
 
 // Used in Mongoose options on the module
-export const BrandsMongooseModuleOpts = {
-  name: BrandSchemaName,
-  schema: BrandSchema,
+export const ShopMongooseModuleOpts = {
+  name: ShopSchemaName,
+  schema: ShopSchema,
 };

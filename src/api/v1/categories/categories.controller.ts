@@ -11,8 +11,9 @@ import {
 import { Model } from 'mongoose';
 import { CategoryDto } from './categories.model';
 import { CategoriesService } from './categories.service';
+import Config from '../../../config';
 
-@Controller('categories')
+@Controller(Config.apiV1.categories)
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
@@ -21,9 +22,9 @@ export class CategoriesController {
     return await this.categoriesService.create(categoryDto);
   }
 
-  @Get()
-  async findAll() {
-    return await this.categoriesService.findAll();
+  @Get(':shopId')
+  async findAllBrandsOfShop(@Param() params) {
+    return await this.categoriesService.findAllOfShop(params.shopId);
   }
 
   @Get(':id')

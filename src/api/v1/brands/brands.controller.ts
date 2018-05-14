@@ -1,3 +1,4 @@
+import Config from '../../../config';
 import { BrandDto } from './brands.model';
 import {
   Get,
@@ -12,7 +13,7 @@ import {
 import { Model } from 'mongoose';
 import { BrandsService } from './brands.service';
 
-@Controller('brands')
+@Controller(Config.apiV1.brands)
 export class BrandsController {
   constructor(private readonly brandsService: BrandsService) {}
 

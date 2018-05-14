@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 
 // Used for plain objects typing
 export class CategoryDto {
+  readonly shopId: string;
   readonly name: string;
   readonly slug: string;
   readonly parentId: string;
@@ -11,6 +12,7 @@ export class CategoryDto {
 
 // Used for instanciated mongoose documents
 export interface Category extends mongoose.Document {
+  readonly shopId: string;
   readonly name: string;
   readonly slug: string;
   readonly parentId: string;
@@ -22,6 +24,7 @@ export const CategorySchemaName = 'Category';
 
 export const CategorySchema = new mongoose.Schema(
   {
+    shopId: { type: String, required: true },
     name: { type: String, required: true },
     slug: { type: String, required: true },
     parentId: { type: String, required: false },

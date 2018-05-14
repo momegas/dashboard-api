@@ -1,14 +1,14 @@
 import { Model } from 'mongoose';
 import { Component, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Brand, BrandSchema } from './brands.model';
 import { CrudService } from 'shared/services/crud.service';
+import { ShopSchema, Shop } from './shops.model';
 
 @Component()
-export class BrandsService extends CrudService {
+export class ShopsService extends CrudService {
   constructor(
-    @InjectModel(BrandSchema) private readonly brandsRepository: Model<Brand>,
+    @InjectModel(ShopSchema) private readonly shopsRepository: Model<Shop>,
   ) {
-    super(brandsRepository);
+    super(shopsRepository);
   }
 }

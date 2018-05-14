@@ -2,14 +2,14 @@ import { Get, Controller, Inject, Post, Body, Param, Delete, Put } from '@nestjs
 import { Model } from 'mongoose';
 import Config from '../../../config';
 import { ProductsService } from './products.service';
-import { ProductsDto } from './products.model';
+import { ProductDto } from './products.model';
 
 @Controller(Config.apiV1.products)
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  async create(@Body() productsDto: ProductsDto) {
+  async create(@Body() productsDto: ProductDto) {
     return await this.productsService.create(productsDto);
   }
 
@@ -29,7 +29,7 @@ export class ProductsController {
   }
 
   @Put(':id')
-  async update(@Param() params, @Body() productsDto: ProductsDto) {
+  async update(@Param() params, @Body() productsDto: ProductDto) {
     return await this.productsService.update(params.id, productsDto);
   }
 }

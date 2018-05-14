@@ -47,4 +47,9 @@ export class ShopsController {
   async findShopProducts(@Param() params) {
     return await this.shopsService.findShopCategories(params.id);
   }
+
+  @Get(`:id/${Config.apiV1.users}`)
+  async findShopUsers(@Param() params) {
+    return await this.shopsService.findShopUsers(params.id);
+  }
 }

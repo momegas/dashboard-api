@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 // Used for plain objects typing
-export class ProductsDto {
+export class ProductDto {
   readonly shopId: string;
   readonly name: string;
   readonly slug: string;

@@ -6,6 +6,7 @@ import { Brand, BrandSchema } from '../brands/brands.model';
 import { Category, CategorySchema } from '../categories/categories.model';
 import { Product, ProductSchema } from '../products/products.model';
 import { Shop, ShopSchema } from './shops.model';
+import { User, UserSchema } from '../users/users.model';
 
 @Component()
 export class ShopsService extends CrudService {
@@ -14,6 +15,7 @@ export class ShopsService extends CrudService {
     @InjectModel(BrandSchema) private readonly brandsRepository: Model<Brand>,
     @InjectModel(CategorySchema) private readonly categoriesRepository: Model<Category>,
     @InjectModel(ProductSchema) private readonly productsRepository: Model<Product>,
+    @InjectModel(UserSchema) private readonly usersRepository: Model<Product>,
   ) {
     super(shopsRepository);
   }
@@ -28,6 +30,10 @@ export class ShopsService extends CrudService {
 
   async findShopProducts(shopId: string): Promise<Product[]> {
     return await this.findRelatedDocuments<Product>(this.productsRepository, shopId);
+  }
+
+  async findShopUsers(shopId: string): Promise<User[]> {
+    return await this.findRelatedDocuments<User>(this.usersRepository, shopId);
   }
 
   private async findRelatedDocuments<T>(repository: Model<any>, shopId: string): Promise<T[]> {

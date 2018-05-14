@@ -12,6 +12,9 @@ import { ShopsService } from './shops/shops.service';
 import { ProductMongooseModuleOpts } from './products/products.model';
 import { ProductsService } from './products/products.service';
 import { ProductsController } from './products/products.controller';
+import { UserMongooseModuleOpts } from './users/users.model';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
@@ -19,8 +22,15 @@ import { ProductsController } from './products/products.controller';
     MongooseModule.forFeature([BrandsMongooseModuleOpts]),
     MongooseModule.forFeature([ShopMongooseModuleOpts]),
     MongooseModule.forFeature([ProductMongooseModuleOpts]),
+    MongooseModule.forFeature([UserMongooseModuleOpts]),
   ],
-  controllers: [ShopsController, CategoriesController, BrandsController, ProductsController],
-  components: [ShopsService, CategoriesService, BrandsService, ProductsService],
+  controllers: [
+    ShopsController,
+    CategoriesController,
+    BrandsController,
+    ProductsController,
+    UsersController,
+  ],
+  components: [ShopsService, CategoriesService, BrandsService, ProductsService, UsersService],
 })
 export class RestApiV1Module {}

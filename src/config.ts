@@ -9,7 +9,7 @@ const Config = {
     brands: 'brands',
     categories: 'categories',
     products: 'products',
-    admins: 'admins',
+    users: 'users',
     images: 'images',
   },
 };

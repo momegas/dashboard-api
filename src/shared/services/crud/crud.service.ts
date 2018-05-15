@@ -39,9 +39,7 @@ export abstract class CrudService {
 
   public async update(id, updatedDocument) {
     try {
-      return await this.repository
-        .findByIdAndUpdate(id, updatedDocument)
-        .exec();
+      return await this.repository.findByIdAndUpdate(id, updatedDocument).exec();
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }

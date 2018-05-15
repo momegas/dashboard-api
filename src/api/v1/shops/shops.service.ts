@@ -1,7 +1,7 @@
 import { Component } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CrudService } from 'shared/services/crud.service';
+import { CrudService } from 'shared/services/crud/crud.service';
 import { Brand, BrandSchema } from '../brands/brands.model';
 import { Category, CategorySchema } from '../categories/categories.model';
 import { Product, ProductSchema } from '../products/products.model';

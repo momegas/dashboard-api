@@ -1,5 +1,5 @@
 import { Module, Global } from '@nestjs/common';
-import { CrudService } from './services/crud.service';
+import { CrudService } from './services/crud/crud.service';
 
 @Global()
 @Module({

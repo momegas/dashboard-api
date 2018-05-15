@@ -1,5 +1,5 @@
 import { Model, Document } from 'mongoose';
-import { Component, HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 export abstract class CrudService {
   constructor(private readonly repository: Model<Document>) {}

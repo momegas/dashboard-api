@@ -7,6 +7,6 @@ import Config from 'config';
 @Module({
   imports: [MongooseModule.forRoot(Config.databases.mongo.url), RestApiV1Module, SharedModule],
   controllers: [],
-  components: [],
+  providers: [],
 })
 export class AppModule {}

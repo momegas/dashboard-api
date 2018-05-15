@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CrudService } from 'shared/services/crud/crud.service';
@@ -8,7 +8,7 @@ import { Product, ProductSchema } from '../products/products.model';
 import { Shop, ShopSchema } from './shops.model';
 import { User, UserSchema } from '../users/users.model';
 
-@Component()
+@Injectable()
 export class ShopsService extends CrudService {
   constructor(
     @InjectModel(ShopSchema) private readonly shopsRepository: Model<Shop>,

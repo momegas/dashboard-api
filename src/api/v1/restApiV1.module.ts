@@ -31,6 +31,6 @@ import { UsersService } from './users/users.service';
     ProductsController,
     UsersController,
   ],
-  components: [ShopsService, CategoriesService, BrandsService, ProductsService, UsersService],
+  providers: [ShopsService, CategoriesService, BrandsService, ProductsService, UsersService],
 })
 export class RestApiV1Module {}

@@ -3,7 +3,7 @@ import { CrudService } from './services/crud/crud.service';
 
 @Global()
 @Module({
-  imports: [CrudService],
-  exports: [CrudService],
+  imports: [],
+  exports: [],
 })
 export class SharedModule {}

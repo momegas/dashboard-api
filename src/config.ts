@@ -12,6 +12,10 @@ const Config = {
     users: 'users',
     images: 'images',
   },
+  encryption: {
+    saltRounds: 10,
+    secret: 'pizzaWithFeta',
+  },
 };
 
 export default Config;

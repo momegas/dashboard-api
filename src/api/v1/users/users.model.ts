@@ -1,3 +1,4 @@
+import { PasswordUtils } from './../../../shared/utils/password/password.utils';
 import * as mongoose from 'mongoose';
 
 // Used for plain objects typing
@@ -36,8 +37,9 @@ export const UserSchema = new mongoose.Schema(
   },
 );
 
-UserSchema.pre('save', function<User>(next) {
-  console.log(`we need to hash this: ${this.password}`);
+UserSchema.pre('save', async function<User>(next) {
+  const hash = await PasswordUtils.hash(this.password);
+  this.password = hash;
   next();
 });
 

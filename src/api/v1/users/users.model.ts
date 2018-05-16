@@ -1,5 +1,5 @@
 import { PasswordUtils } from './../../../shared/utils/password/password.utils';
-import * as mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 // Used for plain objects typing
 export class UserDto {
@@ -12,7 +12,7 @@ export class UserDto {
 }
 
 // Used for instantiated mongoose documents
-export interface User extends mongoose.Document {
+export interface User extends Document {
   readonly shopId: string;
   readonly username: string;
   readonly name: string;
@@ -23,7 +23,7 @@ export interface User extends mongoose.Document {
 
 export const UserSchemaName = 'User';
 
-export const UserSchema = new mongoose.Schema(
+export const UserSchema = new Schema(
   {
     shopId: { type: String, required: true },
     username: { type: String, required: true, unique: true },

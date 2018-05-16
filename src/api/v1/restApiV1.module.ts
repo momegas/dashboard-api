@@ -18,11 +18,13 @@ import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([CategoriesMongooseModuleOpts]),
-    MongooseModule.forFeature([BrandsMongooseModuleOpts]),
-    MongooseModule.forFeature([ShopMongooseModuleOpts]),
-    MongooseModule.forFeature([ProductMongooseModuleOpts]),
-    MongooseModule.forFeature([UserMongooseModuleOpts]),
+    MongooseModule.forFeature([
+      CategoriesMongooseModuleOpts,
+      BrandsMongooseModuleOpts,
+      ShopMongooseModuleOpts,
+      ProductMongooseModuleOpts,
+      UserMongooseModuleOpts,
+    ]),
   ],
   controllers: [
     ShopsController,

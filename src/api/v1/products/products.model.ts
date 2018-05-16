@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 // Used for plain objects typing
 export class ProductDto {
@@ -10,7 +10,7 @@ export class ProductDto {
 }
 
 // Used for instantiated mongoose documents
-export interface Product extends mongoose.Document {
+export interface Product extends Document {
   readonly shopId: string;
   readonly name: string;
   readonly slug: string;
@@ -20,7 +20,7 @@ export interface Product extends mongoose.Document {
 
 export const ProductSchemaName = 'Product';
 
-export const ProductSchema = new mongoose.Schema(
+export const ProductSchema = new Schema(
   {
     shopId: { type: String, required: true },
     name: { type: String, required: true, unique: true },

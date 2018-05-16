@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CrudService } from 'shared/services/crud/crud.service';
-import { Brand, BrandSchema } from '../brands/brands.model';
-import { Category, CategorySchema } from '../categories/categories.model';
-import { Product, ProductSchema } from '../products/products.model';
-import { Shop, ShopSchema } from './shops.model';
-import { User, UserSchema } from '../users/users.model';
+import { Brand, BrandSchemaName } from '../brands/brands.model';
+import { Category, CategorySchemaName } from '../categories/categories.model';
+import { Product, ProductSchemaName } from '../products/products.model';
+import { Shop, ShopSchemaName } from './shops.model';
+import { User, UserSchemaName } from '../users/users.model';
+import { CrudService } from '../../../shared/services/crud/crud.service';
 
 @Injectable()
 export class ShopsService extends CrudService {
   constructor(
-    @InjectModel(ShopSchema) private readonly shopsRepository: Model<Shop>,
-    @InjectModel(BrandSchema) private readonly brandsRepository: Model<Brand>,
-    @InjectModel(CategorySchema) private readonly categoriesRepository: Model<Category>,
-    @InjectModel(ProductSchema) private readonly productsRepository: Model<Product>,
-    @InjectModel(UserSchema) private readonly usersRepository: Model<Product>,
+    @InjectModel(ShopSchemaName) private readonly shopsRepository: Model<Shop>,
+    @InjectModel(BrandSchemaName) private readonly brandsRepository: Model<Brand>,
+    @InjectModel(CategorySchemaName) private readonly categoriesRepository: Model<Category>,
+    @InjectModel(ProductSchemaName) private readonly productsRepository: Model<Product>,
+    @InjectModel(UserSchemaName) private readonly usersRepository: Model<Product>,
   ) {
     super(shopsRepository);
   }

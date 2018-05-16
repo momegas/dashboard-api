@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 // Used for plain objects typing
 export class BrandDto {
@@ -6,25 +6,25 @@ export class BrandDto {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 // Used for instantiated mongoose documents
-export interface Brand extends mongoose.Document {
+export interface Brand extends Document {
   readonly shopId: string;
   readonly name: string;
   readonly slug: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 export const BrandSchemaName = 'Brand';
 
-export const BrandSchema = new mongoose.Schema(
+export const BrandSchema = new Schema(
   {
     shopId: { type: String, required: true },
-    name: { type: String, required: true, unique: true },
-    slug: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    slug: { type: String, required: true },
     description: { type: String, required: false },
     enabled: { type: Boolean, required: false, default: true },
   },

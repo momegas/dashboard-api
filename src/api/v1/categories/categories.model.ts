@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 // Used for plain objects typing
 export class CategoryDto {
@@ -11,7 +11,7 @@ export class CategoryDto {
 }
 
 // Used for instanciated mongoose documents
-export interface Category extends mongoose.Document {
+export interface Category extends Document {
   readonly shopId: string;
   readonly name: string;
   readonly slug: string;
@@ -22,7 +22,7 @@ export interface Category extends mongoose.Document {
 
 export const CategorySchemaName = 'Category';
 
-export const CategorySchema = new mongoose.Schema(
+export const CategorySchema = new Schema(
   {
     shopId: { type: String, required: true },
     name: { type: String, required: true, unique: true },

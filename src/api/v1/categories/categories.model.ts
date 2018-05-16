@@ -5,9 +5,9 @@ export class CategoryDto {
   readonly shopId: string;
   readonly name: string;
   readonly slug: string;
-  readonly parentId: string;
+  readonly parentId?: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 // Used for instanciated mongoose documents
@@ -15,9 +15,9 @@ export interface Category extends Document {
   readonly shopId: string;
   readonly name: string;
   readonly slug: string;
-  readonly parentId: string;
+  readonly parentId?: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 export const CategorySchemaName = 'Category';
@@ -25,8 +25,8 @@ export const CategorySchemaName = 'Category';
 export const CategorySchema = new Schema(
   {
     shopId: { type: String, required: true },
-    name: { type: String, required: true, unique: true },
-    slug: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    slug: { type: String, required: true },
     parentId: { type: String, required: false },
     description: { type: String, required: false },
     enabled: { type: Boolean, required: false, default: true },

@@ -5,17 +5,12 @@ import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import Config from '../src/config';
+import * as entities from './entities';
 
 describe('Brands', () => {
   let app: INestApplication;
   let currentEntityId = null;
   const endpoint = `/${Config.apiV1.brands}`;
-  const brand: BrandDto = {
-    name: 'test',
-    slug: 'test',
-    description: 'test',
-    shopId: '1',
-  };
   const nameAfterUpdate = 'test2';
 
   beforeAll(async () => {
@@ -33,10 +28,10 @@ describe('Brands', () => {
     it(`should create new entity`, async () => {
       const res = await req(app.getHttpServer())
         .post(endpoint)
-        .send(brand)
+        .send(entities.brand)
         .expect(201);
       currentEntityId = res.body._id;
-      expect(res.body.name).toBe(brand.name);
+      expect(res.body.name).toBe(entities.brand.name);
     });
   });
 
@@ -46,7 +41,7 @@ describe('Brands', () => {
         .get(endpoint)
         .expect(200);
       const currentEntity = res.body.find(entity => entity._id === currentEntityId);
-      expect(currentEntity.name).toBe(brand.name);
+      expect(currentEntity.name).toBe(entities.brand.name);
     });
   });
 
@@ -56,7 +51,7 @@ describe('Brands', () => {
         .get(`${endpoint}/${currentEntityId}`)
         .expect(200);
       expect(res.body._id).toBe(currentEntityId);
-      expect(res.body.name).toBe(brand.name);
+      expect(res.body.name).toBe(entities.brand.name);
     });
   });
 
@@ -67,7 +62,7 @@ describe('Brands', () => {
         .send({ name: nameAfterUpdate })
         .expect(200);
       expect(res.body._id).toBe(currentEntityId);
-      expect(res.body.name).toBe(brand.name);
+      expect(res.body.name).toBe(entities.brand.name);
     });
   });
 

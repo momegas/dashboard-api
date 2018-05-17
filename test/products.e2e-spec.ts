@@ -4,18 +4,13 @@ const req = require('supertest');
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import * as entities from './entities';
 import Config from '../src/config';
 
 describe('Products', () => {
   let app: INestApplication;
   let currentEntityId = null;
   const endpoint = `/${Config.apiV1.products}`;
-  const product: ProductDto = {
-    name: 'test',
-    slug: 'test',
-    description: 'test',
-    shopId: '1',
-  };
   const nameAfterUpdate = 'test2';
 
   beforeAll(async () => {
@@ -33,10 +28,10 @@ describe('Products', () => {
     it(`should create new entity`, async () => {
       const res = await req(app.getHttpServer())
         .post(endpoint)
-        .send(product)
+        .send(entities.product)
         .expect(201);
       currentEntityId = res.body._id;
-      expect(res.body.name).toBe(product.name);
+      expect(res.body.name).toBe(entities.product.name);
     });
   });
 
@@ -46,7 +41,7 @@ describe('Products', () => {
         .get(endpoint)
         .expect(200);
       const currentEntity = res.body.find(entity => entity._id === currentEntityId);
-      expect(currentEntity.name).toBe(product.name);
+      expect(currentEntity.name).toBe(entities.product.name);
     });
   });
 
@@ -56,7 +51,7 @@ describe('Products', () => {
         .get(`${endpoint}/${currentEntityId}`)
         .expect(200);
       expect(res.body._id).toBe(currentEntityId);
-      expect(res.body.name).toBe(product.name);
+      expect(res.body.name).toBe(entities.product.name);
     });
   });
 
@@ -67,7 +62,7 @@ describe('Products', () => {
         .send({ name: nameAfterUpdate })
         .expect(200);
       expect(res.body._id).toBe(currentEntityId);
-      expect(res.body.name).toBe(product.name);
+      expect(res.body.name).toBe(entities.product.name);
     });
   });
 

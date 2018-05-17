@@ -6,7 +6,7 @@ export class ProductDto {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 // Used for instantiated mongoose documents
@@ -15,7 +15,7 @@ export interface Product extends Document {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 export const ProductSchemaName = 'Product';
@@ -23,7 +23,7 @@ export const ProductSchemaName = 'Product';
 export const ProductSchema = new Schema(
   {
     shopId: { type: String, required: true },
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     slug: { type: String, required: true },
     description: { type: String, required: false },
     enabled: { type: Boolean, required: false, default: true },

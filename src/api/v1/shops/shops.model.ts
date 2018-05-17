@@ -5,7 +5,7 @@ export class ShopDto {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 // Used for instantiated mongoose documents
@@ -13,7 +13,7 @@ export interface Shop extends Document {
   readonly name: string;
   readonly slug: string;
   readonly description: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 export const ShopSchemaName = 'Shop';

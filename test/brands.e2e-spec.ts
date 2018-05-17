@@ -1,18 +1,15 @@
 import { BrandDto } from './../src/api/v1/brands/brands.model';
 import { RestApiV1Module } from './../src/api/v1/restApiV1.module';
-import { AppModule } from './../src/app.module';
 const req = require('supertest');
 import { Test } from '@nestjs/testing';
-import { INestApplication, Delete } from '@nestjs/common';
-import { BrandsService } from '../src/api/v1/brands/brands.service';
-import { NestFactory } from '@nestjs/core';
+import { INestApplication } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import Config from '../src/config';
 
 describe('Brands', () => {
   let app: INestApplication;
   let currentEntityId = null;
-  const endpoint = '/brands';
+  const endpoint = `/${Config.apiV1.brands}`;
   const brand: BrandDto = {
     name: 'test',
     slug: 'test',

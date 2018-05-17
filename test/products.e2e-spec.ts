@@ -1,4 +1,4 @@
-import { CategoryDto } from './../src/api/v1/categories/categories.model';
+import { ProductDto } from './../src/api/v1/products/products.model';
 import { RestApiV1Module } from './../src/api/v1/restApiV1.module';
 const req = require('supertest');
 import { Test } from '@nestjs/testing';
@@ -6,15 +6,14 @@ import { INestApplication } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import Config from '../src/config';
 
-describe('Categories', () => {
+describe('Products', () => {
   let app: INestApplication;
   let currentEntityId = null;
-  const endpoint = `/${Config.apiV1.categories}`;
-  const category: CategoryDto = {
+  const endpoint = `/${Config.apiV1.products}`;
+  const product: ProductDto = {
     name: 'test',
     slug: 'test',
     description: 'test',
-    parentId: '1',
     shopId: '1',
   };
   const nameAfterUpdate = 'test2';
@@ -34,10 +33,10 @@ describe('Categories', () => {
     it(`should create new entity`, async () => {
       const res = await req(app.getHttpServer())
         .post(endpoint)
-        .send(category)
+        .send(product)
         .expect(201);
       currentEntityId = res.body._id;
-      expect(res.body.name).toBe(category.name);
+      expect(res.body.name).toBe(product.name);
     });
   });
 
@@ -47,7 +46,7 @@ describe('Categories', () => {
         .get(endpoint)
         .expect(200);
       const currentEntity = res.body.find(entity => entity._id === currentEntityId);
-      expect(currentEntity.name).toBe(category.name);
+      expect(currentEntity.name).toBe(product.name);
     });
   });
 
@@ -57,7 +56,7 @@ describe('Categories', () => {
         .get(`${endpoint}/${currentEntityId}`)
         .expect(200);
       expect(res.body._id).toBe(currentEntityId);
-      expect(res.body.name).toBe(category.name);
+      expect(res.body.name).toBe(product.name);
     });
   });
 
@@ -68,7 +67,7 @@ describe('Categories', () => {
         .send({ name: nameAfterUpdate })
         .expect(200);
       expect(res.body._id).toBe(currentEntityId);
-      expect(res.body.name).toBe(category.name);
+      expect(res.body.name).toBe(product.name);
     });
   });
 

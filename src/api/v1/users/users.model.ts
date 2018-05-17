@@ -8,7 +8,7 @@ export class UserDto {
   readonly name: string;
   readonly email: string;
   readonly password: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 // Used for instantiated mongoose documents
@@ -18,7 +18,7 @@ export interface User extends Document {
   readonly name: string;
   readonly email: string;
   readonly password: string;
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 }
 
 export const UserSchemaName = 'User';

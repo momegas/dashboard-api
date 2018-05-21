@@ -23,14 +23,14 @@ describe.only('Files', () => {
 
   afterAll(async () => await app.close());
 
-  describe('POST', () => {
+  describe('POST /shopId', () => {
     it(`should create new entity`, async () => {
       const res = await req(app.getHttpServer())
-        .post(endpoint)
-        .field('name', 'my awesome Desert')
-        .attach('Desert', 'test/fixtures/Desert.jpg')
-        .send(entities.brand)
-        .expect(201);
+        .post(`${endpoint}/${1}`)
+        .field('name', 'file')
+        .attach('Desert', 'test/fixtures/Desert.jpg');
+      // .expect(201);
+      console.log(res);
       currentEntityId = res.body._id;
       expect(res.body.name).toBe(entities.brand.name);
     });

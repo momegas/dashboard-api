@@ -3,7 +3,8 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CrudService } from '../../../shared/services/crud/crud.service';
 import { FileSchemaName, FileDocument, FileDto } from './files.model';
-import { FileSystemService } from 'shared/services/fileSystem/fileSystem.service';
+import { FileSystemService } from '../../../shared/services/fileSystem/fileSystem.service';
+import { Express } from 'express';
 
 @Injectable()
 export class FilesService extends CrudService {
@@ -14,21 +15,13 @@ export class FilesService extends CrudService {
     super(filesRepository);
   }
 
-  // ieldname: 'file',
-  // originalname: 'Desert.jpg',
-  // encoding: '7bit',
-  // mimetype: 'image/jpeg',
-  // buffer:
-  async create(file): Promise<FileDocument> {
-    console.log(file);
-    // Save item in fsystem
-    this.fileSystemService.createFile(file.buffer);
+  async upload(file: Express.Multer.File, shopId: string): Promise<FileDocument> {
+    const name = await this.fileSystemService.createFile(file);
     const fileDbEntity: FileDto = {
-      name: file.originalname,
-      shopId: '1',
+      name,
+      shopId,
     };
     try {
-      console.log('saving');
       const newDocument = new this.filesRepository(fileDbEntity);
       return await newDocument.save();
     } catch (e) {

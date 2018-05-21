@@ -20,17 +20,10 @@ import { FileDto } from './files.model';
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
-  @Post()
-  @UseInterceptors(
-    FileInterceptor('file', {
-      limits: {
-        files: 1,
-        fileSize: 5 * 10 * 10 * 10 * 10 * 10 * 10 * 10 * 10000, // 50 mb in bytes
-      },
-    }),
-  )
-  async create(@UploadedFile() file) {
-    return await this.filesService.create(file);
+  @Post(':shopId')
+  @UseInterceptors(FileInterceptor('file'))
+  async upload(@UploadedFile() file, @Param() params) {
+    return await this.filesService.upload(file, params.shopId);
   }
 
   @Get()

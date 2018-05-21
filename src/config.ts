@@ -10,7 +10,7 @@ const Config = {
     categories: 'categories',
     products: 'products',
     users: 'users',
-    images: 'images',
+    files: 'files',
   },
   encryption: {
     saltRounds: 10,

@@ -1,3 +1,6 @@
+import { SharedModule } from './../../shared/shared.module';
+import { FilesService } from './files/files.service';
+import { FilesMongooseModuleOpts } from './files/files.model';
 import { ShopsController } from './shops/shops.controller';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -15,6 +18,7 @@ import { ProductsController } from './products/products.controller';
 import { UserMongooseModuleOpts } from './users/users.model';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
+import { FilesController } from './files/files.controller';
 
 @Module({
   imports: [
@@ -24,7 +28,9 @@ import { UsersService } from './users/users.service';
       ShopMongooseModuleOpts,
       ProductMongooseModuleOpts,
       UserMongooseModuleOpts,
+      FilesMongooseModuleOpts,
     ]),
+    SharedModule,
   ],
   controllers: [
     ShopsController,
@@ -32,7 +38,15 @@ import { UsersService } from './users/users.service';
     BrandsController,
     ProductsController,
     UsersController,
+    FilesController,
   ],
-  providers: [ShopsService, CategoriesService, BrandsService, ProductsService, UsersService],
+  providers: [
+    ShopsService,
+    CategoriesService,
+    BrandsService,
+    ProductsService,
+    UsersService,
+    FilesService,
+  ],
 })
 export class RestApiV1Module {}

@@ -1,3 +1,4 @@
+import { FileDto } from './../src/api/v1/files/files.model';
 import { ShopDto } from '../src/api/v1/shops/shops.model';
 import { ProductDto } from '../src/api/v1/products/products.model';
 import { CategoryDto } from '../src/api/v1/categories/categories.model';
@@ -39,4 +40,10 @@ export const user = (): UserDto => ({
   password: 'test',
   shopId: '1',
   username: guid(),
+});
+
+export const file = (extension?: string): FileDto => ({
+  name: `${guid()}.${extension}`,
+  description: 'test',
+  shopId: '1',
 });
